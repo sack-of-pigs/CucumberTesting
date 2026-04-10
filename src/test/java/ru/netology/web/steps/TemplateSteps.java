@@ -29,7 +29,7 @@ public class TemplateSteps {
 
     @Когда("пользователь переводит {int} рублей с карты с номером {string} на карту с id {string}")
     public void doTransfer(int amount, String cardNumber, String cardId){
-        dashboardPage.pressTransferButton(cardId);
+        transferPage = dashboardPage.pressTransferButton(cardId);
         dashboardPage = transferPage.doValidTransfer(String.valueOf(amount),cardNumber);
     }
 
