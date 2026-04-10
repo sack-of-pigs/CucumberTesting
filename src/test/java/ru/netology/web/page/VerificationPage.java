@@ -21,8 +21,4 @@ public class VerificationPage {
         verifyButton.click();
         return new DashboardPage();
     }
-
-    public void verifyCodeIsInvalid() {
-        errorPopup.shouldHave(text("Неверно указан код! Попробуйте ещё раз."));
-    }
 }
