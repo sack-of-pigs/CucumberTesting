@@ -14,10 +14,6 @@ public class DashboardPage {
     private ElementsCollection cards = $$(".list__item div");
     private final String balanceStart = "баланс: ";
     private final String balanceFinish = " р.";
-    private SelenideElement transferAmountInput = $("[data-test-id=amount] input");
-    private SelenideElement transferFromInput = $("[data-test-id=from] input");
-    private SelenideElement transferButton = $("[data-test-id=action-transfer]");
-    private SelenideElement errorMessage = $("[data-test-id=error-notification]");
 
     public void DashboardPage() {
         heading.shouldBe(visible);
@@ -35,14 +31,8 @@ public class DashboardPage {
         return Integer.parseInt(value);
     }
 
-    public void transferMoneyTo(String id, String cardNumberFrom, int moneyAmount) {
+    public TransferPage pressTransferButton(String id){
         cards.find(Condition.attribute("data-test-id",id)).$("button").click();
-        transferAmountInput.setValue(String.valueOf(moneyAmount));
-        transferFromInput.setValue(cardNumberFrom);
-        transferButton.click();
-    }
-
-    public void getErrorMessage() {
-        errorMessage.should(visible).$(".notification__content").should(Condition.text("Ошибка! "));
+        return new TransferPage();
     }
 }
